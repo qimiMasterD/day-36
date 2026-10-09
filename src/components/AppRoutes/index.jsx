@@ -1,5 +1,7 @@
 import { HashRouter as Router, Routes, Route } from "react-router";
 
+import ScrollToTop from "../ScrollToTop";
+
 // Layouts
 import AdminLayout from "../../layouts/AdminLayout";
 import AuthLayout from "../../layouts/AuthLayout";
@@ -38,10 +40,11 @@ Admin Layout
 function AppRoutes() {
     return (
         <Router>
+            <ScrollToTop></ScrollToTop>
             <Routes>
                 <Route element={<AuthLayout />}>
-                    <Route path="login" element={<Login />} />
-                    <Route path="register" element={<Register />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
                 </Route>
 
                 <Route element={<DefaultLayout />}>
@@ -53,10 +56,10 @@ function AppRoutes() {
                     <Route path="/privacy" element={<Privacy />} />
                 </Route>
 
-                <Route element={<AdminLayout />}>
-                    <Route path="/admin" element={<Dashboard />} />
-                    <Route path="/admin/users" element={<Users />} />
-                    <Route path="/admin/settings" element={<Settings />} />
+                <Route path="/admin" element={<AdminLayout />}>
+                    <Route index element={<Dashboard />} />
+                    <Route path="users" element={<Users />} />
+                    <Route path="settings" element={<Settings />} />
                 </Route>
 
                 <Route path="*" element={<NotFound />} />
